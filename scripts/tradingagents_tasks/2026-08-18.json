@@ -1,0 +1,212 @@
+{
+  "date": "2026-08-18",
+  "tasks": [
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "symbol": "600036.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:43"
+    },
+    {
+      "code": "601398",
+      "name": "工商银行",
+      "symbol": "601398.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:43"
+    },
+    {
+      "code": "000001",
+      "name": "平安银行",
+      "symbol": "000001.SZ",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:43"
+    },
+    {
+      "code": "601229",
+      "name": "上海银行",
+      "symbol": "601229.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:43"
+    },
+    {
+      "code": "601998",
+      "name": "中信银行",
+      "symbol": "601998.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:44"
+    },
+    {
+      "code": "601009",
+      "name": "南京银行",
+      "symbol": "601009.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:44"
+    },
+    {
+      "code": "600919",
+      "name": "江苏银行",
+      "symbol": "600919.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:44"
+    },
+    {
+      "code": "601169",
+      "name": "北京银行",
+      "symbol": "601169.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:45"
+    },
+    {
+      "code": "600926",
+      "name": "杭州银行",
+      "symbol": "600926.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:45"
+    },
+    {
+      "code": "002142",
+      "name": "宁波银行",
+      "symbol": "002142.SZ",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:45"
+    },
+    {
+      "code": "601328",
+      "name": "交通银行",
+      "symbol": "601328.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:45"
+    },
+    {
+      "code": "601166",
+      "name": "兴业银行",
+      "symbol": "601166.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:46"
+    },
+    {
+      "code": "601939",
+      "name": "建设银行",
+      "symbol": "601939.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:46"
+    },
+    {
+      "code": "601658",
+      "name": "邮储银行",
+      "symbol": "601658.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:46"
+    },
+    {
+      "code": "601919",
+      "name": "中远海控",
+      "symbol": "601919.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:46"
+    },
+    {
+      "code": "600030",
+      "name": "中信证券",
+      "symbol": "600030.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:47"
+    },
+    {
+      "code": "601688",
+      "name": "华泰证券",
+      "symbol": "601688.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:47"
+    },
+    {
+      "code": "601318",
+      "name": "中国平安",
+      "symbol": "601318.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:47"
+    },
+    {
+      "code": "601601",
+      "name": "中国太保",
+      "symbol": "601601.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:48"
+    },
+    {
+      "code": "000651",
+      "name": "格力电器",
+      "symbol": "000651.SZ",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:48"
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "symbol": "000333.SZ",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:48"
+    },
+    {
+      "code": "600690",
+      "name": "海尔智家",
+      "symbol": "600690.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:48"
+    },
+    {
+      "code": "601088",
+      "name": "中国神华",
+      "symbol": "601088.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "19:06:49"
+    }
+  ]
+}

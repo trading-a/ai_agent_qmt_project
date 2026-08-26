@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv-runner/
+venv/
+venv-runner/
+
+# Env / secrets
+.env
+*.local
+
+# Runtime state & data
+data/*.json
+!data/watchlist.json
+!data/snapshot_*.json
+!data/*.example.json
+!data/holidays.json
+data/orders_pending.json
+data/bot_state.json
+
+# logs and tmp file
+logs/
+Temp/
+temp/
+tmp/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+# Secrets / MCP 凭据（本地保留，不入库）
+mcp.json

@@ -1,0 +1,22 @@
+{
+  "system_name": "何价值全自动交易系统",
+  "version": "1.0.0",
+  "auto_execute": true,
+  "auto_execute_note": "true=真实下单; false=仅输出拟交易清单（dry-run）。已由用户于2026-08-13批准启用实盘。",
+  "account_target_annual_return_pct": [8, 12],
+  "daily_buy_budget_pct_of_assets": 0.10,
+  "single_order_pct_of_assets": 0.05,
+  "cash_floor_pct": 0.10,
+  "sector_cap_bank_pct": 0.60,
+  "sector_cap_other_pct": 0.20,
+  "single_stock_cap_pct": 0.10,
+  "buy_margin_of_safety_pct": 0.20,
+  "sell_premium_pct": 0.30,
+  "sell_percentile_threshold": 80,
+  "position_band_defensive": [0.30, 0.50],
+  "position_band_balanced": [0.60, 0.80],
+  "position_band_middle": [0.40, 0.60],
+  "log_dir": "logs",
+  "report_dir": "report",
+  "watchlist_file": "watchlist.json"
+}

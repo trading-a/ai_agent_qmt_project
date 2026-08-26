@@ -1,0 +1,175 @@
+{
+  "date": "2026-08-14",
+  "tasks": [
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "task_id": "475e46ad-e823-42e1-ba53-e0d04b233123",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "00:39:23",
+      "saved": "600036.SH_2026-08-14.md",
+      "symbol": "600036.SH"
+    },
+    {
+      "code": "601398",
+      "name": "工商银行",
+      "task_id": "5ca404d5-838d-44ed-aab0-a85b872f6223",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "00:39:23",
+      "saved": "601398.SH_2026-08-14.md",
+      "symbol": "601398.SH"
+    },
+    {
+      "code": "000001",
+      "name": "平安银行",
+      "symbol": "000001.SZ",
+      "task_id": "787daf09-4ba8-4682-8a5d-1f834f51086e",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:45",
+      "saved": "000001.SZ_2026-08-14.md"
+    },
+    {
+      "code": "601229",
+      "name": "上海银行",
+      "symbol": "601229.SH",
+      "task_id": "def3d4bc-ebf6-4924-a781-7bbf02633bb3",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:45",
+      "saved": "601229.SH_2026-08-14.md"
+    },
+    {
+      "code": "601998",
+      "name": "中信银行",
+      "symbol": "601998.SH",
+      "task_id": "21b3b624-528e-477a-82ab-97648a64ad66",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:46",
+      "saved": "601998.SH_2026-08-14.md"
+    },
+    {
+      "code": "601009",
+      "name": "南京银行",
+      "symbol": "601009.SH",
+      "task_id": "af140e26-8841-4a61-8b46-bde2272e9de9",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:46",
+      "saved": "601009.SH_2026-08-14.md"
+    },
+    {
+      "code": "600919",
+      "name": "江苏银行",
+      "symbol": "600919.SH",
+      "task_id": "cf64cb24-70a1-48f7-9e7c-1d83c1a71543",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:46",
+      "saved": "600919.SH_2026-08-14.md"
+    },
+    {
+      "code": "601169",
+      "name": "北京银行",
+      "symbol": "601169.SH",
+      "task_id": "c34dd504-03b9-4f5b-892b-d0e1902ce905",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:46",
+      "saved": "601169.SH_2026-08-14.md"
+    },
+    {
+      "code": "600926",
+      "name": "杭州银行",
+      "symbol": "600926.SH",
+      "task_id": "7c61b0af-e4ec-416e-8727-c38702b4e9fd",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:47",
+      "saved": "600926.SH_2026-08-14.md"
+    },
+    {
+      "code": "002142",
+      "name": "宁波银行",
+      "symbol": "002142.SZ",
+      "task_id": "c120d6fa-655f-4b16-9cf8-38f81ebdfac7",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:47",
+      "saved": "002142.SZ_2026-08-14.md"
+    },
+    {
+      "code": "601328",
+      "name": "交通银行",
+      "symbol": "601328.SH",
+      "task_id": "535e933b-393a-4b57-a377-e58fc4c60d1e",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:47",
+      "saved": "601328.SH_2026-08-14.md"
+    },
+    {
+      "code": "601919",
+      "name": "中远海控",
+      "symbol": "601919.SH",
+      "task_id": "75ae885e-82d5-45e1-b645-68c180f54d00",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:48",
+      "saved": "601919.SH_2026-08-14.md"
+    },
+    {
+      "code": "600030",
+      "name": "中信证券",
+      "symbol": "600030.SH",
+      "task_id": "57227465-6c35-4a91-8e1d-df62fa233f86",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:48",
+      "saved": "600030.SH_2026-08-14.md"
+    },
+    {
+      "code": "601318",
+      "name": "中国平安",
+      "symbol": "601318.SH",
+      "task_id": "c9b5ff9c-2960-4d70-9124-afe436f53dee",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:25:48",
+      "saved": "601318.SH_2026-08-14.md"
+    },
+    {
+      "code": "000651",
+      "name": "格力电器",
+      "symbol": "000651.SZ",
+      "task_id": "f923cc6c-26a5-4bec-bbd0-851991ed4fc5",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:34:09",
+      "saved": "000651.SZ_2026-08-14.md"
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "symbol": "000333.SZ",
+      "task_id": "a86b79c9-c71f-450f-a387-91f5330890df",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:34:09",
+      "saved": "000333.SZ_2026-08-14.md"
+    },
+    {
+      "code": "601088",
+      "name": "中国神华",
+      "symbol": "601088.SH",
+      "task_id": "7a32e7f2-bc89-41d2-8485-b02bc6d42cc8",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "01:34:09",
+      "saved": "601088.SH_2026-08-14.md"
+    }
+  ]
+}

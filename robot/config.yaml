@@ -1,0 +1,45 @@
+# ============================================================
+# ⚠️ 本文件已废弃（2026-08-13）—— 仅作历史参考，勿再使用
+# ------------------------------------------------------------
+# 此 config.yaml 属于早期脚手架（robot/），其风险参数与现行宪法冲突：
+#   - max_single_stock_ratio 0.20   vs SOUL.md 单票 ≤10%（总资产）
+#   - max_industry_ratio_bank 0.30  vs SOUL.md 银行 ≤50%
+#   - max_industry_ratio_other 0.40 vs SOUL.md 其他行业 ≤20%
+#   - min_cash_ratio 0.30           vs SOUL.md 现金 ≥10%
+#   - industries 池含池外标的（农行/太保/华泰等）vs SOUL.md 仅限自选池17只
+# 现行权威配置：
+#   - 纪律：SOUL.md（宪法，不可修改）+ AGENTS.md（操作协议）
+#   - 策略：根目录 STRATEGY.md
+#   - 参数：根目录 CONFIG.json
+#   - 下单预检：scripts/preflight.py（代码级闸门）
+# 本目录 robot/plan.py、robot/mcp_client.py 保留作工具参考。
+# ============================================================
+
+# 以下为历史内容，参数已失效，请勿引用：
+
+risk:
+  max_single_stock_ratio: 0.20        # [废弃] 冲突：SOUL.md 单票≤10%
+  max_industry_ratio_bank: 0.30       # [废弃] 冲突：SOUL.md 银行≤50%
+  max_industry_ratio_other: 0.40      # [废弃] 冲突：SOUL.md 其他行业≤20%
+  min_cash_ratio: 0.30                # [废弃] 冲突：SOUL.md 现金≥10%
+  max_order_value_ratio: 0.10         # [废弃] 见 CONFIG.json
+  max_orders_per_run: 5               # [废弃] 见 preflight.py
+  daily_loss_stop_ratio: 0.02         # [废弃] SOUL.md 无止损条款，不得引入
+  stop_loss_ratio: 0.15               # [废弃] 同上
+  portfolio_drawdown_ratio: 0.10      # [废弃] 同上
+  lot_size: 100
+
+industries:
+  银行: [600036, 601398, 000001, 601229, 601998, 601009, 600919, 601169, 600926, 002142, 601328, 601288, 601166, 600000, 601939]
+  保险: [601318, 601601, 601628, 601336]
+  证券: [600030, 601688, 600837, 601211, 601788]
+  家电: [000651, 000333, 600690]
+  煤炭: [601088, 600188, 601225]
+  航运: [601919, 600026, 601872]
+
+paths:
+  plan_file: D:/workspace_ai/ai_agent_qmt_project/report/plan/current_plan.json
+  report_dir: D:/workspace_ai/ai_agent_qmt_project/report
+  state_db: D:/workspace_ai/ai_agent_qmt_project/robot/state/robot_state.db
+
+trading_sessions: ["09:30", "11:30", "13:00", "15:00"]

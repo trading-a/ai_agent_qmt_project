@@ -1,0 +1,224 @@
+{
+  "date": "2026-08-24",
+  "tasks": [
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "symbol": "600036.SH",
+      "task_id": "91619ecb-b515-48d3-8dea-ba3a36064d56",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:15",
+      "saved": "600036.SH_2026-08-24.md"
+    },
+    {
+      "code": "601398",
+      "name": "工商银行",
+      "symbol": "601398.SH",
+      "task_id": "cc9f17eb-dedd-4c98-aaad-c60d156497a5",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:16",
+      "saved": "601398.SH_2026-08-24.md"
+    },
+    {
+      "code": "000001",
+      "name": "平安银行",
+      "symbol": "000001.SZ",
+      "task_id": "5a01047a-73eb-45cb-85e1-0a47d349b3fd",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:16",
+      "saved": "000001.SZ_2026-08-24.md"
+    },
+    {
+      "code": "601229",
+      "name": "上海银行",
+      "symbol": "601229.SH",
+      "task_id": "c146d959-d848-4425-aac7-f41331ce58a9",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:16",
+      "saved": "601229.SH_2026-08-24.md"
+    },
+    {
+      "code": "601998",
+      "name": "中信银行",
+      "symbol": "601998.SH",
+      "task_id": "61f062c9-b990-48e8-998b-e5e4dd74d86c",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:16",
+      "saved": "601998.SH_2026-08-24.md"
+    },
+    {
+      "code": "601009",
+      "name": "南京银行",
+      "symbol": "601009.SH",
+      "task_id": "13fdbfbc-9e9e-4236-b3b8-7e2a1349b5a0",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:17",
+      "saved": "601009.SH_2026-08-24.md"
+    },
+    {
+      "code": "600919",
+      "name": "江苏银行",
+      "symbol": "600919.SH",
+      "task_id": "874d5586-0157-4f8d-9a09-6077a2880937",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:17",
+      "saved": "600919.SH_2026-08-24.md"
+    },
+    {
+      "code": "601169",
+      "name": "北京银行",
+      "symbol": "601169.SH",
+      "task_id": "82ee852a-bffb-4b73-97cf-8bd012d4e639",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:17",
+      "saved": "601169.SH_2026-08-24.md"
+    },
+    {
+      "code": "600926",
+      "name": "杭州银行",
+      "symbol": "600926.SH",
+      "task_id": "954da75e-5322-4933-8907-729c6eb61e57",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:17",
+      "saved": "600926.SH_2026-08-24.md"
+    },
+    {
+      "code": "002142",
+      "name": "宁波银行",
+      "symbol": "002142.SZ",
+      "task_id": "ee86c437-7310-44c9-a4f0-19c7831d5ea0",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:18",
+      "saved": "002142.SZ_2026-08-24.md"
+    },
+    {
+      "code": "601328",
+      "name": "交通银行",
+      "symbol": "601328.SH",
+      "task_id": "b7de3c2e-4c89-4da5-989e-f80d070f483d",
+      "status": "running",
+      "note": "⚖️ 中性风险评估",
+      "updated": "02:03:14"
+    },
+    {
+      "code": "601166",
+      "name": "兴业银行",
+      "symbol": "601166.SH",
+      "task_id": "e3a22a97-a213-4e85-ab19-78a1f9a09fb4",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:18",
+      "saved": "601166.SH_2026-08-24.md"
+    },
+    {
+      "code": "601939",
+      "name": "建设银行",
+      "symbol": "601939.SH",
+      "task_id": "d463ce4a-9551-40ef-871e-a40d3f86caba",
+      "status": "failed",
+      "note": "任务已创建，等待执行...",
+      "updated": "02:20:23"
+    },
+    {
+      "code": "601658",
+      "name": "邮储银行",
+      "symbol": "601658.SH",
+      "task_id": "f9f00e7d-80a2-4564-b07e-2d06097a28ce",
+      "status": "completed",
+      "note": "分析完成",
+      "updated": "02:03:18",
+      "saved": "601658.SH_2026-08-24.md"
+    },
+    {
+      "code": "601919",
+      "name": "中远海控",
+      "symbol": "601919.SH",
+      "task_id": "b53c60a6-7aa4-465b-b33f-0fed453531bf",
+      "status": "running",
+      "note": "准备分析数据...",
+      "updated": "02:03:14"
+    },
+    {
+      "code": "600030",
+      "name": "中信证券",
+      "symbol": "600030.SH",
+      "task_id": "caf5d195-e250-47f0-9e35-dd3db488822e",
+      "status": "running",
+      "note": "⚖️ 中性风险评估",
+      "updated": "02:03:14"
+    },
+    {
+      "code": "601688",
+      "name": "华泰证券",
+      "symbol": "601688.SH",
+      "task_id": "78969958-6c0f-488b-a33d-524907133378",
+      "status": "failed",
+      "note": "任务已创建，等待执行...",
+      "updated": "02:20:53"
+    },
+    {
+      "code": "601318",
+      "name": "中国平安",
+      "symbol": "601318.SH",
+      "task_id": "87793f6f-27b1-4c30-87f2-209cdaf8bf74",
+      "status": "running",
+      "note": "准备分析数据...",
+      "updated": "02:03:14"
+    },
+    {
+      "code": "601601",
+      "name": "中国太保",
+      "symbol": "601601.SH",
+      "task_id": "8f7a40fc-c337-4216-b6f8-6209e2624ac7",
+      "status": "failed",
+      "note": "任务已创建，等待执行...",
+      "updated": "02:21:24"
+    },
+    {
+      "code": "000651",
+      "name": "格力电器",
+      "symbol": "000651.SZ",
+      "task_id": "245a4811-06c7-458c-8a43-73004fa2c195",
+      "status": "running",
+      "note": "🐻 看跌研究员",
+      "updated": "02:03:15"
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "symbol": "000333.SZ",
+      "task_id": "652689de-82aa-407f-9cdd-8d4beb6b29ad",
+      "status": "running",
+      "note": "准备分析数据...",
+      "updated": "02:03:15"
+    },
+    {
+      "code": "600690",
+      "name": "海尔智家",
+      "symbol": "600690.SH",
+      "task_id": "e9c3e518-5b69-4ba9-8191-4bdfc309fbe0",
+      "status": "running",
+      "note": "准备分析数据...",
+      "updated": "02:03:15"
+    },
+    {
+      "code": "601088",
+      "name": "中国神华",
+      "symbol": "601088.SH",
+      "task_id": "797a4623-5285-43ce-a0f7-00af852b89d4",
+      "status": "failed",
+      "note": "任务已创建，等待执行...",
+      "updated": "02:21:54"
+    }
+  ]
+}
