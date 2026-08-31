@@ -28,7 +28,7 @@ ai_agent_qmt_project/
 | trading-morning-decision | 工作日 09:40 | 宏观定仓位带 → 自选池信号 → 风控 → 预检 → 按 auto_execute 下单 → report/decision/*_morning.md |
 | trading-afternoon-decision | 工作日 13:10 | 午后复查班：识别午后异动、与晨间共享单日预算 → report/decision/*_afternoon.md |
 | trading-daily-review | 工作日 15:15 | 收盘复盘：执行偏差、委托核对、结果归因、改进项 → report/daily/ |
-| trading-agents-analysis | 工作日 19:00 | 盘后多智能体分析：24只自选股分析报告 → report/trading-agents/（供次日决策参考） |
+| trading-agents-analysis | 每月1、15日 01:00 | 双周多智能体分析（标准深度）：24只自选股分析报告+summary摘要 → report/trading-agents/（供各决策班参考；击球区/警戒区个股由晨间/午后班按需定向补充） |
 | trading-weekly-review | 每周六 10:00 | 周复盘：信号命中率、宏观回测、参数建议 → report/weekly/ |
 | trading-monthly-review | 每月1日 10:30 | 月复盘：收益 vs 年化目标拆解、纪律审计 → report/monthly/ |
 | trading-quarterly-review | 1/4/7/10月1日 11:00 | 季复盘：业绩归因、策略有效性 → report/quarterly/ |

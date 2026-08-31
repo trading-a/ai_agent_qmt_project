@@ -8,11 +8,13 @@ scripts/tradingagents_runner.py — 自选股多智能体分析执行器
 保存到 report/trading-agents/YYYYMMDD/ 目录，供本周决策参考（周频任务，默认周一凌晨运行）。
 
 用法:
-  python scripts/tradingagents_runner.py run  [--depth 标准] [--max-minutes 40] [--limit N]
-  python scripts/tradingagents_runner.py submit        # 仅提交（写任务清单）
-  python scripts/tradingagents_runner.py status        # 仅轮询更新状态
-  python scripts/tradingagents_runner.py collect       # 仅拉取已完成报告
+  python scripts/tradingagents_runner.py run  [--depth 标准] [--max-minutes 40] [--limit N] [--codes 600036,601398]
+  python scripts/tradingagents_runner.py submit [--depth 标准] [--codes 600036,601398]  # 仅提交（写任务清单）
+  python scripts/tradingagents_runner.py status [--date YYYY-MM-DD]   # 仅轮询更新状态
+  python scripts/tradingagents_runner.py collect [--date YYYY-MM-DD]  # 仅拉取已完成报告
+  python scripts/tradingagents_runner.py summary [--date YYYY-MM-DD]  # 仅重新生成批次摘要 summary.md
 断点续跑: 任务清单 scripts/tradingagents_tasks/YYYYMMDD.json，已提交的不会重复提交。
+成本纪律: 全量批次默认双周（每月1/15日）且深度=标准；--codes 用于晨间/午后决策班按需定向提交单只（标准档）。
 """
 import argparse
 import asyncio
@@ -116,9 +118,14 @@ def _parse_json(text):
         return {"_raw": text[:500]}
 
 
-async def do_submit(depth, limit=None):
+async def do_submit(depth, limit=None, codes=None):
     url, headers = load_mcp_conn()
     wl = load_watchlist()
+    if codes:
+        code_set = set(c.strip() for c in codes.split(",") if c.strip())
+        wl = [w for w in wl if w["code"] in code_set]
+        if not wl:
+            print(f"警告: 指定代码 {codes} 均不在自选池内，无任务可提交")
     today = datetime.now().strftime("%Y-%m-%d")
     manifest = load_manifest(today)
     have = {t["code"] for t in manifest["tasks"]}
@@ -173,9 +180,9 @@ async def do_submit(depth, limit=None):
 ACTIVE_STATES = ("submitted", "pending", "processing", "running", "queued", "")
 
 
-async def do_status():
+async def do_status(date=None):
     url, headers = load_mcp_conn()
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = date or datetime.now().strftime("%Y-%m-%d")
     manifest = load_manifest(today)
     active = [t for t in manifest["tasks"] if t.get("task_id") and t.get("status") in ACTIVE_STATES]
     if not active:
@@ -208,15 +215,15 @@ def _report_filename(symbol, date):
     return f"{symbol}_{date}.md"
 
 
-async def do_collect():
+async def do_collect(date=None):
     url, headers = load_mcp_conn()
-    today = datetime.now().strftime("%Y-%m-%d")
-    manifest = load_manifest(today)
+    target = date or datetime.now().strftime("%Y-%m-%d")
+    manifest = load_manifest(target)
     done = [t for t in manifest["tasks"] if t.get("task_id") and t.get("status") == "completed"]
     if not done:
         print("无已完成任务")
         return manifest
-    out_dir = os.path.join(REPORT_DIR, today)
+    out_dir = os.path.join(REPORT_DIR, target)
     os.makedirs(out_dir, exist_ok=True)
     symbol_map = {w["code"]: w.get("symbol", w["code"]) for w in load_watchlist()}
 
@@ -233,10 +240,10 @@ async def do_collect():
                 try:
                     text = await _call_tool(session, "get_analysis_result", {"task_id": t["task_id"]}, attempts=2)
                     symbol = t.get("symbol") or symbol_map.get(t["code"], t["code"])
-                    fname = _report_filename(symbol, today)
+                    fname = _report_filename(symbol, target)
                     with open(os.path.join(out_dir, fname), "w", encoding="utf-8") as f:
                         f.write(f"# {t['code']} {t['name']} · 多智能体分析报告\n\n")
-                        f.write(f"> 生成日期 {today} | task_id {t['task_id']} | 来源 tradingagents-mcp\n\n")
+                        f.write(f"> 生成日期 {target} | task_id {t['task_id']} | 来源 tradingagents-mcp\n\n")
                         f.write(text)
                     t["saved"] = fname
                     t["updated"] = datetime.now().strftime("%H:%M:%S")
@@ -272,9 +279,82 @@ def write_index(manifest):
     print(f"索引已更新: {idx_path}")
 
 
-async def do_run(depth, max_minutes, limit):
+def _extract_report_summary(path):
+    """从完整报告抽取 决策/风险等级/摘要/投资建议 段（纯脚本，不消耗 LLM tokens）。"""
+    with open(path, "r", encoding="utf-8") as f:
+        text = f.read()
+    out = []
+    for ln in text.splitlines()[:12]:
+        s = ln.strip()
+        if (
+            s.startswith("# ")
+            or s.startswith("股票:")
+            or s.startswith("分析日期:")
+            or s.startswith("决策:")
+            or s.startswith("风险等级:")
+        ):
+            out.append(s)
+
+    def _seg(pattern, cap):
+        m = re.search(pattern, text, re.S)
+        if not m:
+            return None
+        seg = m.group(1).strip()
+        if len(seg) > cap:
+            seg = seg[:cap] + "…（截断）"
+        return seg
+
+    seg = _seg(r"## 摘要\s*\n(.*?)(?=\n## |\Z)", 600)
+    if seg:
+        out.append("## 摘要")
+        out.append(seg)
+    seg2 = _seg(r"## 投资建议\s*\n(.*?)(?=\n## |\Z)", 400)
+    if seg2:
+        out.append("## 投资建议")
+        out.append(seg2)
+    if len(out) <= 1:
+        return None
+    return "\n".join(out)
+
+
+def write_summary(manifest):
+    """从批次已保存报告抽取摘要/结论，生成 <批次>/summary.md（供决策班次快速浏览，勿逐份读全文）。"""
+    date = manifest["date"]
+    out_dir = os.path.join(REPORT_DIR, date)
+    if not os.path.isdir(out_dir):
+        print(f"批次目录不存在: {out_dir}")
+        return
+    files = sorted(f for f in os.listdir(out_dir) if f.endswith(".md") and f != "summary.md")
+    if not files:
+        print(f"批次 {date} 无已保存报告，跳过 summary 生成")
+        return
+    lines = [
+        "# trading-agents 分析摘要（脚本自动生成，勿手改）",
+        "",
+        f"> 批次 {date} | 仅含已保存报告的个股 | 完整报告见同目录 .md 文件",
+        "",
+    ]
+    for f in files:
+        summ = _extract_report_summary(os.path.join(out_dir, f))
+        if not summ:
+            continue
+        lines.append("---")
+        lines.append("")
+        lines.append(summ)
+        lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("> 本摘要由 scripts/tradingagents_runner.py 从完整报告自动抽取（决策/风险等级/摘要/投资建议段），"
+                 "供决策班次快速浏览；第三方观点仅供参考，决策仍以 SOUL.md 框架与 STRATEGY.md 规则为准。")
+    sp = os.path.join(out_dir, "summary.md")
+    with open(sp, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"摘要已生成: {sp} ({os.path.getsize(sp)} 字节)")
+
+
+async def do_run(depth, max_minutes, limit, codes=None):
     deadline = time.time() + max_minutes * 60
-    manifest = await do_submit(depth, limit=limit)
+    manifest = await do_submit(depth, limit=limit, codes=codes)
     while True:
         await asyncio.sleep(POLL_INTERVAL)
         manifest = await do_status()
@@ -286,6 +366,7 @@ async def do_run(depth, max_minutes, limit):
             break
     manifest = await do_collect()
     write_index(manifest)
+    write_summary(manifest)
     total = len(manifest["tasks"])
     ok = sum(1 for t in manifest["tasks"] if t.get("saved"))
     failed = sum(1 for t in manifest["tasks"] if t.get("status") == "failed")
@@ -301,22 +382,34 @@ def main():
     r.add_argument("--depth", default="标准")
     r.add_argument("--max-minutes", type=int, default=DEFAULT_MAX_MINUTES)
     r.add_argument("--limit", type=int, default=None, help="仅处理前N只（测试用）")
-    sub.add_parser("submit")
-    s2 = sub.add_parser("status")
+    r.add_argument("--codes", default=None, help="逗号分隔代码子集（如 600036,601398）")
+    s1 = sub.add_parser("submit", help="仅提交（写任务清单）")
+    s1.add_argument("--depth", default="标准")
+    s1.add_argument("--codes", default=None, help="逗号分隔代码子集（如 600036,601398）")
+    s2 = sub.add_parser("status", help="仅轮询更新状态")
     s2.add_argument("--once", action="store_true")
-    sub.add_parser("collect")
+    s2.add_argument("--date", default=None, help="任务清单日期 YYYY-MM-DD（默认今天）")
+    s3 = sub.add_parser("collect", help="仅拉取已完成报告")
+    s3.add_argument("--date", default=None, help="任务清单日期 YYYY-MM-DD（默认今天）")
+    s4 = sub.add_parser("summary", help="仅为指定批次重新生成 summary.md（需 --date）")
+    s4.add_argument("--date", default=None, help="批次日期 YYYY-MM-DD（默认今天）")
     args = p.parse_args()
 
     if args.cmd == "run":
-        asyncio.run(do_run(args.depth, args.max_minutes, args.limit))
+        asyncio.run(do_run(args.depth, args.max_minutes, args.limit, args.codes))
     elif args.cmd == "submit":
-        m = asyncio.run(do_submit("标准"))
+        m = asyncio.run(do_submit(args.depth, codes=args.codes))
         write_index(m)
     elif args.cmd == "status":
-        asyncio.run(do_status())
-    elif args.cmd == "collect":
-        m = asyncio.run(do_collect())
+        m = asyncio.run(do_status(date=args.date))
         write_index(m)
+    elif args.cmd == "collect":
+        m = asyncio.run(do_collect(date=args.date))
+        write_index(m)
+        write_summary(m)
+    elif args.cmd == "summary":
+        date = args.date or datetime.now().strftime("%Y-%m-%d")
+        write_summary(load_manifest(date))
 
 
 if __name__ == "__main__":
