@@ -8,11 +8,16 @@ scripts/preflight.py — 下单前预检闸门（代码级风控）
 本脚本是确定性代码闸门，不依赖 LLM 自觉。
 
 用法:
-  python scripts/preflight.py <plan.json> --assets <总资产> --account_time "<query_account的data_time_text>"
+  python scripts/preflight.py <plan.json> --assets <总资产> --account_time "<query_account的data_time_text>" [--positions "code=持仓市值,code=持仓市值"]
 
 --account_time 必填：传入 query_account 返回的 data_time_text（如 "2026-08-17 09:41:00"）。
   校验其日期 == 今天；否则（QMT 账户数据停留在昨日/更早）全部意图 FAIL，禁止下单。
   这是 2026-08-14 账户数据滞后事件的代码级闸门（此前仅靠 LLM 流程层拦截）。
+
+--positions 可选：当前持仓市值（来自 query_positions 的市值字段），格式 "code=市值,code=市值"。
+  用于校验每笔买入后该标的占比预估 = (持仓市值 + 本次买入金额) / 总资产 <= single_stock_cap_pct (10%)，
+  即"单一标的主动买入上限"的代码级闸门（2026-09-01 仓位策略变更后固化）。
+  未提供时仅 WARN 提示，不阻断（保持向后兼容）。
 
 计划 JSON 格式:
 {
@@ -32,6 +37,8 @@ scripts/preflight.py — 下单前预检闸门（代码级风控）
   4. volume：正整数且 100 整数倍（A股整手）
   5. buy 必须提供 price>0（用实时最新价估算金额）
   6. 单笔上限：买入金额 <= 总资产 x single_order_pct_of_assets (5%)
+  6.1 买入后单标占比：提供 --positions 时，预估占比 = (该标持仓市值 + 本次买入金额) / 总资产
+      <= single_stock_cap_pct (10%)（主动买入约束；被动超限容忍见 STRATEGY.md，不在此校验）
   7. 单日预算：当日已批准买入合计 + 本次 <= 总资产 x daily_buy_budget_pct_of_assets (10%)
      （当日台账 scripts/plans/YYYYMMDD.json，晨间/午后班共享）
   8. 同一标的同一日最多一次买入批准
@@ -68,6 +75,11 @@ def main():
         required=True,
         help='query_account 返回的 data_time_text（如 "2026-08-17 09:41:00"）；日期≠今天则全部意图 FAIL',
     )
+    ap.add_argument(
+        "--positions",
+        default="",
+        help='当前持仓市值（query_positions），格式 code=市值,code=市值；校验买入后单标占比<=10%',
+    )
     ap.add_argument("--no-save", action="store_true", help="仅校验，不写入当日台账")
     args = ap.parse_args()
 
@@ -101,6 +113,14 @@ def main():
         return 1
     daily_budget = args.assets * float(cfg.get("daily_buy_budget_pct_of_assets", 0.10))
     single_cap = args.assets * float(cfg.get("single_order_pct_of_assets", 0.05))
+    single_stock_cap = args.assets * float(cfg.get("single_stock_cap_pct", 0.10))
+    pos_map = {}
+    if args.positions:
+        for p in args.positions.split(","):
+            p = p.strip()
+            if "=" in p:
+                c, v = p.split("=", 1)
+                pos_map[str(c).strip()] = float(v)
 
     # 2. 白名单
     try:
@@ -186,6 +206,14 @@ def main():
                 errors.append(
                     f"{tag} 单笔金额 {amount:.2f} 超单笔上限 {single_cap:.2f}（总资产5%）"
                 )
+            if pos_map:
+                est_ratio = (pos_map.get(code, 0.0) + amount) / args.assets
+                if est_ratio > single_stock_cap / args.assets:
+                    errors.append(
+                        f"{tag} 买入后单标占比预估 {est_ratio*100:.2f}% 超主动买入上限 "
+                        f"{single_stock_cap/args.assets*100:.1f}%"
+                        f"（该标持仓市值 {pos_map.get(code, 0.0):.0f} + 本次买入 {amount:.0f}，总资产 {args.assets:.0f}）"
+                    )
             if code in day_codes:
                 errors.append(f"{tag} {code} 今日已有买入批准，同一标的单日最多一次")
             if spent + planned_so_far + amount > daily_budget:
@@ -207,6 +235,8 @@ def main():
                  "approved_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
             )
 
+    if new_buys and not pos_map:
+        warnings.append("未提供 --positions，未校验买入后单标占比（决策层仍须人工核对）")
     for w in warnings:
         print("WARN:", w)
 
@@ -232,6 +262,10 @@ def main():
     print(f" - 本次计划 {len(intents)} 笔（买入 {len(new_buys)} 笔 / 卖出 {len(intents) - len(new_buys)} 笔）")
     if new_buys:
         print(f" - 本次买入合计 {total_planned_buy:.2f} 元；当日已批准合计 {spent + total_planned_buy:.2f} / 预算 {daily_budget:.2f}")
+        if pos_map:
+            for nb in new_buys:
+                est = (pos_map.get(nb["code"], 0.0) + nb["amount"]) / args.assets
+                print(f" - 买入后单标占比预估 {nb['code']}: {est*100:.2f}%（上限 {single_stock_cap/args.assets*100:.1f}%）")
     return 0
 
 

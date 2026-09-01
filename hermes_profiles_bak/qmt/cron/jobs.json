@@ -25,15 +25,15 @@
       "schedule_display": "40 9 * * 1-5",
       "repeat": {
         "times": null,
-        "completed": 13
+        "completed": 14
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-13T23:14:14.693271+08:00",
-      "next_run_at": "2026-09-01T09:40:00+08:00",
-      "last_run_at": "2026-08-31T09:48:16.730279+08:00",
+      "next_run_at": "2026-09-02T09:40:00+08:00",
+      "last_run_at": "2026-09-01T09:46:18.600272+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -69,15 +69,15 @@
       "schedule_display": "15 15 * * 1-5",
       "repeat": {
         "times": null,
-        "completed": 12
+        "completed": 13
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-13T23:14:41.031596+08:00",
-      "next_run_at": "2026-09-01T15:15:00+08:00",
-      "last_run_at": "2026-08-31T15:17:22.916362+08:00",
+      "next_run_at": "2026-09-02T15:15:00+08:00",
+      "last_run_at": "2026-09-01T15:17:42.326556+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -157,22 +157,24 @@
       "schedule_display": "30 10 1 * *",
       "repeat": {
         "times": null,
-        "completed": 0
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-13T23:14:41.061069+08:00",
-      "next_run_at": "2026-09-01T10:30:00+08:00",
-      "last_run_at": null,
-      "last_status": null,
+      "next_run_at": "2026-10-01T10:30:00+08:00",
+      "last_run_at": "2026-09-01T10:35:44.165825+08:00",
+      "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
       "deliver": "local",
       "origin": null,
       "enabled_toolsets": null,
-      "workdir": "D:\\workspace_ai\\ai_agent_qmt_project"
+      "workdir": "D:\\workspace_ai\\ai_agent_qmt_project",
+      "fire_claim": null,
+      "failure_streak": 0
     },
     {
       "id": "201983463f56",
@@ -283,15 +285,15 @@
       "schedule_display": "10 13 * * 1-5",
       "repeat": {
         "times": null,
-        "completed": 12
+        "completed": 13
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-13T23:33:50.399519+08:00",
-      "next_run_at": "2026-09-01T13:10:00+08:00",
-      "last_run_at": "2026-08-31T13:11:27.770834+08:00",
+      "next_run_at": "2026-09-02T13:10:00+08:00",
+      "last_run_at": "2026-09-01T13:12:45.415611+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -327,15 +329,15 @@
       "schedule_display": "0 1 1,15 * *",
       "repeat": {
         "times": null,
-        "completed": 8
+        "completed": 9
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-14T00:30:30.907017+08:00",
-      "next_run_at": "2026-09-01T01:00:00+08:00",
-      "last_run_at": "2026-08-31T03:05:36.840665+08:00",
+      "next_run_at": "2026-09-15T01:00:00+08:00",
+      "last_run_at": "2026-09-01T08:22:23.362869+08:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -347,5 +349,5 @@
       "failure_streak": 0
     }
   ],
-  "updated_at": "2026-08-31T22:15:55.256340+08:00"
+  "updated_at": "2026-09-01T15:17:42.327556+08:00"
 }
