@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-03",
+  "tasks": [
+    {
+      "code": "000651",
+      "name": "格力电器",
+      "symbol": "000651.SZ",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "09:46:49"
+    },
+    {
+      "code": "600690",
+      "name": "海尔智家",
+      "symbol": "600690.SH",
+      "task_id": "",
+      "status": "failed",
+      "note": "no task_id",
+      "updated": "09:47:49"
+    }
+  ]
+}
