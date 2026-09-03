@@ -11,7 +11,7 @@ ai_agent_qmt_project/
 ├── AGENTS.md          # 操作协议（cron 会话自动注入）
 ├── STRATEGY.md        # 策略手册（行业专项估值规则、买卖区间判定、数据附录）
 ├── CONFIG.json        # 运行时配置（auto_execute 开关、仓位上限等）
-├── watchlist.json     # 自选池 24 只
+├── watchlist.json     # 自选池 34 只
 ├── STOP               # （手动创建）紧急停止开关：存在即全系统禁止下单
 ├── scripts/
 │   ├── journal.py     # 交易流水 / 每日账户快照记账
@@ -28,7 +28,7 @@ ai_agent_qmt_project/
 | trading-morning-decision | 工作日 09:40 | 宏观定仓位带 → 自选池信号 → 风控 → 预检 → 按 auto_execute 下单 → report/decision/*_morning.md |
 | trading-afternoon-decision | 工作日 13:10 | 午后复查班：识别午后异动、与晨间共享单日预算 → report/decision/*_afternoon.md |
 | trading-daily-review | 工作日 15:15 | 收盘复盘：执行偏差、委托核对、结果归因、改进项 → report/daily/ |
-| trading-agents-analysis | 每月1、15日 01:00 | 双周多智能体分析（标准深度）：24只自选股分析报告+summary摘要 → report/trading-agents/（供各决策班参考；击球区/警戒区个股由晨间/午后班按需定向补充） |
+| trading-agents-analysis | 每月1、15日 01:00 | 双周多智能体分析（标准深度）：34只自选股分析报告+summary摘要 → report/trading-agents/（供各决策班参考；击球区/警戒区个股由晨间/午后班按需定向补充） |
 | trading-weekly-review | 每周六 10:00 | 周复盘：信号命中率、宏观回测、参数建议 → report/weekly/ |
 | trading-monthly-review | 每月1日 10:30 | 月复盘：收益 vs 年化目标拆解、纪律审计 → report/monthly/ |
 | trading-quarterly-review | 1/4/7/10月1日 11:00 | 季复盘：业绩归因、策略有效性 → report/quarterly/ |
@@ -40,9 +40,9 @@ ai_agent_qmt_project/
 3. **实盘启用**：用户确认后将 `auto_execute` 置 `true`，系统开始真实下单。
 
 ## 风控红线（代码即纪律，cron 会话必须逐条校验）
-- 仅限自选池24只；医疗医药/食品/种植养殖永不触碰
+- 仅限自选池34只；医疗医药/食品/种植养殖永不触碰
 - 银行≤70%（65~70%警戒区只减不增）、其他行业≤20%、单票主动买入≤10%（被动超限容忍至≤15%，>15%再平衡至≤14%）、现金≥10%（占总资产）
-- 单日买入≤总资产10%（由 preflight.py 代码级强制，晨间+午后共享台账）、单次≤5%；强周期股（中远海控/中信证券）严禁 DCF
+- 单日买入≤总资产10%（由 preflight.py 代码级强制，晨间+午后共享台账）、单次≤5%；强周期股（中远海控/中信证券/宝钢股份/中国石油/云铝股份/中国铝业）严禁 DCF
 - 下单必经三段式：写计划 JSON → preflight 预检 PASS → place_order（跳过预检=违规）
 - STOP 文件存在 = 全系统只读，禁止一切下单（用户手动创建即刹车）
 - 数据不足或 QMT 未连接 → 跳过交易，如实报告，绝不臆造
